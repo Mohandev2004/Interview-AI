@@ -38,6 +38,11 @@ export const metadata = {
   alternates: {
     canonical: "/",
   },
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -87,6 +92,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <link rel="icon" href="/favicon.svg" />
       </head>
       <body className="min-h-screen font-sans">
         <AppProviders>{children}</AppProviders>
