@@ -2,6 +2,11 @@ import { Suspense } from "react";
 import SignInContent from "./signin-content";
 import { Skeleton } from "@/components/ui/skeleton";
 
+export const metadata = {
+  title: "Sign In",
+  description: "Sign in to your Interview AI account to continue preparing for your mock interviews.",
+};
+
 function SignInSkeleton() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-6">

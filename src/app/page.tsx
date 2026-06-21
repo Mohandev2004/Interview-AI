@@ -1,5 +1,5 @@
-"use client";
-
+import { cookies } from "next/headers";
+import { TOKEN_COOKIE_NAME } from "@/lib/auth/jwt";
 import AppHeader from "@/components/layout/app-header";
 import CtaSection from "@/components/landing/cta-section";
 import FeatureTilesSection from "@/components/landing/feature-tiles-section";
@@ -8,11 +8,11 @@ import LandingHeroSection from "@/components/landing/landing-hero-section";
 import SiteFooter from "@/components/landing/site-footer";
 import TechStackSection from "@/components/landing/tech-stack-section";
 import { Separator } from "@/components/ui/separator";
-import { useUser } from "@/hooks/use-user";
 
-export default function HomePage() {
-  const { user } = useUser();
-  const startHref = user ? "/dashboard" : "/signup";
+export default async function HomePage() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get(TOKEN_COOKIE_NAME)?.value;
+  const startHref = token ? "/dashboard" : "/signup";
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-background">
@@ -44,6 +44,31 @@ export default function HomePage() {
       </main>
 
       <SiteFooter />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "Interview AI",
+            "operatingSystem": "All",
+            "applicationCategory": "EducationalApplication",
+            "description": "Ace your next job interview with Interview AI. Practice coding and behavioral mock interviews with realistic real-time AI feedback and detailed performance analytics.",
+            "offers": {
+              "@type": "Offer",
+              "price": "0.00",
+              "priceCurrency": "USD"
+            },
+            "featureList": [
+              "AI-powered coding mock interviews",
+              "Behavioral question prep with instant AI feedback",
+              "Detailed speech-to-text response analysis",
+              "Real-time interview scoring and dashboard tracking"
+            ]
+          })
+        }}
+      />
     </div>
   );
 }

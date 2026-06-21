@@ -56,6 +56,7 @@ export default function ProfileInfoCard() {
         <Button
           variant="ghost"
           className="relative size-9 rounded-full p-0 hover:bg-accent"
+          aria-label="User profile menu"
         >
           <Avatar size="default">
             <AvatarImage src={user.profileImageUrl || undefined} alt={user.name} />

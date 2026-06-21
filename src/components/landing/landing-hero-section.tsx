@@ -1,7 +1,4 @@
-"use client";
-
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { LandingSection } from "@/components/landing/landing-section";
 import { Badge } from "@/components/ui/badge";
@@ -12,8 +9,6 @@ interface LandingHeroSectionProps {
 }
 
 export default function LandingHeroSection({ startHref }: LandingHeroSectionProps) {
-  const router = useRouter();
-
   return (
     <LandingSection className="flex flex-col items-center text-center">
       <Badge variant="secondary" className="mb-4">
@@ -31,9 +26,11 @@ export default function LandingHeroSection({ startHref }: LandingHeroSectionProp
       </p>
 
       <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row">
-        <Button size="lg" onClick={() => router.push(startHref)}>
-          Get Started
-          <ArrowRight />
+        <Button size="lg" asChild>
+          <Link href={startHref}>
+            Get Started
+            <ArrowRight />
+          </Link>
         </Button>
         <Button variant="outline" size="lg" asChild>
           <Link href="/signin">Sign in</Link>

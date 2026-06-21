@@ -2,6 +2,11 @@ import { Suspense } from "react";
 import SignUpContent from "./signup-content";
 import { Skeleton } from "@/components/ui/skeleton";
 
+export const metadata = {
+  title: "Sign Up",
+  description: "Create a free Interview AI account to start practicing mock interviews and get real-time feedback.",
+};
+
 function SignUpSkeleton() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-6">
